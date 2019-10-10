@@ -1,0 +1,7 @@
+{
+  "name": "battleship",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

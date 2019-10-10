@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Batalla Naval</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="loginForm" (ngSubmit)="createGame()" style="padding: 20px;">
+    <div class="form-group">
+      <label for="email">Correo Electronico</label>
+      <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
+        placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">No nos importa compartir tu email.</small>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Ingresar a Destruir!
+      <ion-icon name="key"></ion-icon>
+    </button>
+  </form>
+  <!-- <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-button expand="full" (click)="createGame()">START</ion-button>
+  </ion-item> -->
+</ion-content>

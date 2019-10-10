@@ -1,0 +1,27 @@
+<ion-content>
+
+    <div *ngIf="" id="his-table" class="container">
+        <h2 class="text-center">Ubica los barcos enemigos</h2>
+        <table class="table table-bordered text-center" border="1" style="padding: 20px;">
+            <tr *ngFor="let table of listTableEnemy">
+                <td [id]="'his-table' + field.x + '-' + field.y" *ngFor="let field of table.fields" class="blanco"
+                    [ngClass]="{'match-target':field.ship}" (click)="attack(field)">*</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="my-table" class="container">
+        <h2 class="text-center">Selecciona tus barcos</h2>
+        <table class="table table-bordered text-center" border="1" style="padding: 20px;">
+            <tr *ngFor="let table of listTableMy">
+                <td [id]="'my-table' + field.x + '-' + field.y" *ngFor="let field of table.fields" class="blanco"
+                    [ngClass]="{'select-target':field.ship}" (click)="selectPoint(field)">*</td>
+            </tr>
+        </table>
+        <div class="mx-auto">
+            <button type="button text-center" class="btn btn-outline-success"
+                (click)="terminateTable()">Terminar</button>
+        </div>
+    </div>
+</ion-content>
