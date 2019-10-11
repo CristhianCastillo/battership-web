@@ -15,6 +15,6 @@ export class CreategameService {
   ) { }
 
   creategame(email: string): Observable<any> {
-    return this.http.post<any>('http://localhost:8199/game/create?username=' + email, null, { headers: this.httpHeaders });
+    return this.http.post<any>('http://165.22.229.164:8199/game/create?username=' + email, null, { headers: this.httpHeaders });
   }
 }

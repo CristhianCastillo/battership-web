@@ -1,9 +1,8 @@
-.blanco {
+.blank {
     background: #fff;
     color: #000;
     border-color: #000;
 }
-
 
 .select-target {
     background: #000;
@@ -12,5 +11,10 @@
 
 .match-target {
     background: red;
+    color:#fff;
+}
+
+.no-match-target {
+    background: blue;
     color:#fff;
 }

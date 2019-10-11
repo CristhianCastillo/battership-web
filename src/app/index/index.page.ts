@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CreategameService } from '../creategame.service';
 import { AlertController, LoadingController, NavController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -25,7 +25,7 @@ export class IndexPage implements OnInit {
   }
 
   createGame() {
-    const loading = this.loadingCtrl.create({
+    this.loadingCtrl.create({
       message: "Verificando..."
     }).then(a => {
       a.present();
@@ -34,38 +34,36 @@ export class IndexPage implements OnInit {
         if (this.email != null && this.email.trim() != "") {
           this.gameService.creategame(this.email).subscribe(
             (response: any) => {
-              this.game = response;
               a.dismiss();
-              localStorage.setItem("idGame", this.game.id);
-              localStorage.setItem("userName", this.email);
-              this.router.navigate(['/battle']);
+              if (response.message === "OK") {
+                this.game = response;
+                let navigationExtras: NavigationExtras = {
+                  state: {
+                    idGame: this.game.result.id,
+                    userName: this.email
+                  }
+                };
+                this.router.navigate(['/battle'], navigationExtras);
+              } else {
+                this.showErrorAlert(response.result);
+              }
             }, (error) => {
               a.dismiss();
-              console.error(error);
-              this.showErrorAlertException(error);
-            })
+              console.error(error.message);
+              this.showErrorAlert(error.message);
+            });
         } else {
           a.dismiss();
-          this.showErrorAlert('Ingresa tu correo por fa!');
+          this.showErrorAlert('Ingresa un correo valido!');
         }
       } else {
         a.dismiss();
-        this.showErrorAlert('Ingresa tu correo por fa!');
+        this.showErrorAlert('Ingresa un correo valido!');
       }
     });
   }
 
   showErrorAlert(message: string) {
-    this.alertController.create({
-      header: 'Heyyy',
-      message: message,
-      buttons: ['Ok va!!']
-    }).then(alert => {
-      alert.present();
-    });
-  }
-
-  showErrorAlertException(message: string) {
     this.alertController.create({
       header: 'Error',
       message: message,

@@ -14,10 +14,10 @@ export class CreatebattlefieldService {
   ) { }
 
   getTableGame(): Observable<any> {
-    return this.http.get<any>('http://localhost:8199/battlefield/fields', { headers: this.httpHeaders });
+    return this.http.get<any>('http://165.22.229.164:8199/battlefield/fields', { headers: this.httpHeaders });
   }
 
   createBattle(id: string, name: string, body: any): Observable<any> {
-    return this.http.post<any>('http://localhost:8199/battlefield/create?idGame=' + id + '&username=' + name, body, { headers: this.httpHeaders });
+    return this.http.post<any>('http://165.22.229.164:8199/battlefield/create?idGame=' + id + '&username=' + name, body, { headers: this.httpHeaders });
   }
 }

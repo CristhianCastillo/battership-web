@@ -1,27 +1,48 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title position="center">Batalla Naval</ion-title>
+    </ion-toolbar>
+</ion-header>
+
 <ion-content>
 
-    <div *ngIf="" id="his-table" class="container">
-        <h2 class="text-center">Ubica los barcos enemigos</h2>
+    <div class="container text-center" style="padding-top: 20px;">
+        <button type="button" class="btn btn-primary">
+            Usuario <span class="badge badge-light">{{userName}}</span>
+        </button>
+        <button type="button" class="btn btn-primary">
+            ID Partida <span class="badge badge-light">{{idGame}}</span>
+        </button>
+    </div>
+
+    <div *ngIf="readyToPlay" id="table-enemy" class="container">
+        <h2 class="text-center">Ataca los barcos enemigos</h2>
         <table class="table table-bordered text-center" border="1" style="padding: 20px;">
-            <tr *ngFor="let table of listTableEnemy">
-                <td [id]="'his-table' + field.x + '-' + field.y" *ngFor="let field of table.fields" class="blanco"
-                    [ngClass]="{'match-target':field.ship}" (click)="attack(field)">*</td>
+            <tr *ngFor="let tableEnemy of listTableEnemy">
+                <td [id]="'table-enemy' + fieldEnemy.x + '-' + fieldEnemy.y"
+                    *ngFor="let fieldEnemy of tableEnemy.fields" class="blank"
+                    [ngClass]="{'match-target':fieldEnemy.ship, 'no-match-target': fieldEnemy.clicked}"
+                    (click)="attack(fieldEnemy)">*</td>
             </tr>
         </table>
     </div>
 
 
     <div id="my-table" class="container">
-        <h2 class="text-center">Selecciona tus barcos</h2>
+        <h2 class="text-center">Esta es tu flota de barcos</h2>
         <table class="table table-bordered text-center" border="1" style="padding: 20px;">
             <tr *ngFor="let table of listTableMy">
-                <td [id]="'my-table' + field.x + '-' + field.y" *ngFor="let field of table.fields" class="blanco"
+                <td [id]="'my-table' + field.x + '-' + field.y" *ngFor="let field of table.fields" class="blank"
                     [ngClass]="{'select-target':field.ship}" (click)="selectPoint(field)">*</td>
             </tr>
         </table>
-        <div class="mx-auto">
-            <button type="button text-center" class="btn btn-outline-success"
-                (click)="terminateTable()">Terminar</button>
+        <div class="container" style="padding-bottom: 20px;">
+            <div class="row">
+                <div class="col text-center">
+                    <button type="button text-center" class="btn btn-outline-success" [disabled]="readyToPlay"
+                        (click)="sendTablePosition()">Enviar Posición</button>
+                </div>
+            </div>
         </div>
     </div>
 </ion-content>

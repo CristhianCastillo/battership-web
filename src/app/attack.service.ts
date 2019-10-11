@@ -11,7 +11,7 @@ export class AttackService {
   ) { }
 
   attack(id: string, username: string, x: number, y: number) {
-    return this.http.get('http://localhost:8199/battlefield/attack?idGame=' + id +
+    return this.http.get('http://165.22.229.164:8199/battlefield/attack?idGame=' + id +
       '&username=' + username + '&x=' + x + '&y=' + y);
   }
 }
