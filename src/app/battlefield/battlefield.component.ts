@@ -27,8 +27,8 @@ export class BattlefieldComponent implements OnInit {
     public service: CreatebattlefieldService, public alertController: AlertController, public serviceAttack: AttackService, public loadingCtrl: LoadingController
   ) {
     this.readyToPlay = false;
-    this.userName = "NO ASIGNADO";
-    this.idGame = "NO ASIGNADA";
+    this.userName = "ERROR";
+    this.idGame = "ERROR";
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.idGame = this.router.getCurrentNavigation().extras.state.idGame;

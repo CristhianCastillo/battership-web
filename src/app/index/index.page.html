@@ -7,13 +7,11 @@
 <ion-content>
   <form [formGroup]="loginForm" (ngSubmit)="createGame()" style="padding: 20px;">
     <div class="form-group">
-      <label for="email">Correo Electronico</label>
+      <label style="color: white;" for="email">Correo Electronico</label>
       <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
-        placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">No compartiremos tu email.</small>
+        placeholder="Ingresa tu email">
     </div>
-    <button type="submit" class="btn btn-primary btn-block">Ingresar a Matar!
-      <ion-icon name="key"></ion-icon>
+    <button type="submit" class="btn btn-primary btn-block">Jugar
     </button>
   </form>
 </ion-content>

@@ -7,40 +7,50 @@
 <ion-content>
 
     <div class="container text-center" style="padding-top: 20px;">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-success">
             Usuario <span class="badge badge-light">{{userName}}</span>
         </button>
-        <button type="button" class="btn btn-primary">
-            ID Partida <span class="badge badge-light">{{idGame}}</span>
+        <br><br>
+        <button type="button" class="btn btn-success">
+            Juego <span class="badge badge-light">{{idGame}}</span>
         </button>
     </div>
 
     <div *ngIf="readyToPlay" id="table-enemy" class="container">
-        <h2 class="text-center">Ataca los barcos enemigos</h2>
-        <table class="table table-bordered text-center" border="1" style="padding: 20px;">
+        <h2 class="text-center">Sus barcos</h2>
+        <table class="table table-bordered text-center" border="1" style="padding: 10px;">
             <tr *ngFor="let tableEnemy of listTableEnemy">
                 <td [id]="'table-enemy' + fieldEnemy.x + '-' + fieldEnemy.y"
                     *ngFor="let fieldEnemy of tableEnemy.fields" class="blank"
                     [ngClass]="{'match-target':fieldEnemy.ship, 'no-match-target': fieldEnemy.clicked}"
-                    (click)="attack(fieldEnemy)">*</td>
+                    (click)="attack(fieldEnemy)">
+                    <ion-icon name="boat"></ion-icon>
+                </td>
             </tr>
         </table>
     </div>
 
 
     <div id="my-table" class="container">
-        <h2 class="text-center">Esta es tu flota de barcos</h2>
-        <table class="table table-bordered text-center" border="1" style="padding: 20px;">
+        <div *ngIf="!readyToPlay" class="row">
+            <div class="col text-center">
+                <label class="text-center" style="color: white;">Ingresa la posición de cada uno de tus barcos</label>
+            </div>
+        </div>
+        <h2 class="text-center" style="color: white;">Mis Barcos</h2>
+        <table class="table table-bordered text-center" border="1" style="padding: 10px;">
             <tr *ngFor="let table of listTableMy">
                 <td [id]="'my-table' + field.x + '-' + field.y" *ngFor="let field of table.fields" class="blank"
-                    [ngClass]="{'select-target':field.ship}" (click)="selectPoint(field)">*</td>
+                    [ngClass]="{'select-target':field.ship}" (click)="selectPoint(field)">
+                    <ion-icon name="boat"></ion-icon>
+                </td>
             </tr>
         </table>
         <div class="container" style="padding-bottom: 20px;">
             <div class="row">
                 <div class="col text-center">
                     <button type="button text-center" class="btn btn-outline-success" [disabled]="readyToPlay"
-                        (click)="sendTablePosition()">Enviar Posición</button>
+                        (click)="sendTablePosition()">Comenzar Juego</button>
                 </div>
             </div>
         </div>
